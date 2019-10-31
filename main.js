@@ -27,15 +27,15 @@ files.forEach((item, index) => {
 
 				if (unit === 'NaN') {
 					try {
-						if (sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 1] && sheets[k]['data'][i + 1][j] !== 'NaN') {
+						if (sheets[k]['data'][i - 1] && sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 1] && sheets[k]['data'][i + 1][j] !== 'NaN') {
 							sheets[k]['data'][i][j] = Number(((Number(sheets[k]['data'][i - 1][j]) + Number(sheets[k]['data'][i + 1][j])) / 2).toFixed(2));
-						} else if (sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 2] && sheets[k]['data'][i + 2][j] !== 'NaN') {
+						} else if (sheets[k]['data'][i - 1] && sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 2] && sheets[k]['data'][i + 2][j] !== 'NaN') {
 
 							let delta = Number(((Number(sheets[k]['data'][i + 2][j]) - Number(sheets[k]['data'][i - 1][j])) / 3).toFixed(2));
 							sheets[k]['data'][i][j] = Number((Number(sheets[k]['data'][i - 1][j]) + delta).toFixed(2));
 							sheets[k]['data'][i + 1][j] = Number((Number(sheets[k]['data'][i - 1][j]) + delta * 2).toFixed(2));
 							// console.log(typeof delta, sheets[k]['data'][i][j], sheets[k]['data'][i + 1][j])
-						} else if (sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 3] && sheets[k]['data'][i + 3][j] !== 'NaN') {
+						} else if (sheets[k]['data'][i - 1] && sheets[k]['data'][i - 1][j] !== 'NaN' && sheets[k]['data'][i + 3] && sheets[k]['data'][i + 3][j] !== 'NaN') {
 							let delta = Number(((Number(sheets[k]['data'][i + 3][j]) - Number(sheets[k]['data'][i - 1][j])) / 4).toFixed(2));
 							sheets[k]['data'][i][j] = Number((Number(sheets[k]['data'][i - 1][j]) + delta).toFixed(2));
 							sheets[k]['data'][i + 1][j] = Number((Number(sheets[k]['data'][i - 1][j]) + delta * 2).toFixed(2));
@@ -45,7 +45,7 @@ files.forEach((item, index) => {
 						}
 					} catch (error) {
 						console.log(error);
-						console.log(`出错了！错误所在表${sheets[k]}表, 计算第${i+1}行, 第${j+1}列。`);
+						console.log(`出错了！错误在 ${item}, ${sheets[k].name}表, 第${i+1}行, 第${j+1}列。`);
 					}
 
 
